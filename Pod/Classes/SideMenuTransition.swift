@@ -8,6 +8,11 @@
 
 import UIKit
 
+public protocol NavigationViewContainerType {
+  var navigationView: NavigationViewType { get }
+}
+public protocol NavigationViewType {}
+
 open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
     
     fileprivate var presenting = false
@@ -427,6 +432,7 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
         let topView = mainViewController!.view!
         
         // prepare menu items to slide in
+        var navbar : UIView?
         if presenting {
             originalSuperview = topView.superview
             
@@ -447,6 +453,16 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
             }
             
             hideMenuStart()
+          if let nvbar = (fromViewController as? NavigationViewContainerType)?.navigationView as? UIView {
+            container.addSubview(nvbar)
+            navbar = nvbar
+          }
+
+        } else {
+          if let nvbar = container.subviews.first(where: {$0 is NavigationViewType}) {
+            navbar = nvbar
+            container.bringSubview(toFront: nvbar) 
+          }
         }
         
         let animate = {
@@ -466,6 +482,9 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
                 
                 if self.presenting {
                     self.hideMenuComplete()
+                  if let navbar = navbar {
+                    fromViewController.view.addSubview(navbar)
+                  }
                 } else {
                     self.presentMenuComplete()
                 }
@@ -502,8 +521,14 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
                 if let statusBarView = self.statusBarView {
                     container.bringSubview(toFront: statusBarView)
                 }
-                
+              if let navbar = navbar {
+                container.bringSubview(toFront: navbar)
+              }
                 return
+            } else {
+              if let navbar = navbar {
+                toViewController.view.addSubview(navbar)
+              }
             }
             
             self.hideMenuComplete()
