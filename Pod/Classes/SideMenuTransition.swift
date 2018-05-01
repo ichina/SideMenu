@@ -15,8 +15,8 @@ public protocol NavigationViewType {}
 
 open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
     
-    fileprivate var presenting = false
-    fileprivate var interactive = false
+    public var presenting = false
+    public var interactive = false
     fileprivate weak var originalSuperview: UIView?
     fileprivate weak var activeGesture: UIGestureRecognizer?
     fileprivate var switchMenus = false {
