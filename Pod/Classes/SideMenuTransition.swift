@@ -179,8 +179,10 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
             view.transform = transform
             if velocity >= 100 || velocity >= -50 && abs(distance) >= 0.5 {
                 finish()
+                update(1, isInteration: false)
             } else {
                 cancel()
+                update(0, isInteration: false)
             }
         }
     }
@@ -211,9 +213,11 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
             if velocity >= 100 || velocity >= -50 && distance >= 0.5 {
                 finish()
                 activeGesture = nil
+                update(1, isInteration: false)
             } else {
                 cancel()
                 activeGesture = nil
+                update(0, isInteration: false)
             }
         }
     }
@@ -568,10 +572,13 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
         guard !switchMenus else {
             return
         }
-        
         super.update(percentComplete)
+        update(percentComplete, isInteration: interactive)
     }
-    
+
+    open func update(_ percentComplete: CGFloat, isInteration: Bool) {
+      //For override
+    }
 }
 
 extension SideMenuTransition: UIViewControllerTransitioningDelegate {
