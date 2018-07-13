@@ -576,6 +576,7 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
         update(percentComplete, isInteration: interactive)
     }
 
+    @objc
     open func update(_ percentComplete: CGFloat, isInteration: Bool) {
       //For override
     }
