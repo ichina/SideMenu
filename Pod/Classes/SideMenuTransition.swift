@@ -30,6 +30,11 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
     public var isPresenting: Bool {
       return presenting
     }
+
+    public var isInteractive: Bool {
+      return interactive
+    }
+
     fileprivate var menuWidth: CGFloat {
         get {
             let overriddenWidth = menuViewController?.menuWidth ?? 0
