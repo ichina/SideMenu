@@ -23,6 +23,7 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
         didSet {
             if switchMenus {
                 cancel()
+                update(0, isInteration: false)
             }
         }
     }
