@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yAA-s6-Bam">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yAA-s6-Bam">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -221,7 +221,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="FVG-mn-9HX"/>
                         <barButtonItem key="leftBarButtonItem" title="Left Menu" id="hjJ-My-xDQ">
                             <connections>
-                                <segue destination="DuX-EW-0mP" kind="presentation" identifier="" id="yoa-B2-xG5"/>
+                                <action selector="leftItemTouched:" destination="QHN-nZ-kbB" id="zJy-oP-uqQ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Right Menu" id="ckn-oO-hhX">
@@ -340,9 +340,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="NED-ch-QO3"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -426,7 +423,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <segue destination="uMV-sw-TbB" kind="presentation" id="7VM-K4-IQ0"/>
+                                            <segue destination="uMV-sw-TbB" kind="show" id="7VM-K4-IQ0"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="IdU-2D-zHb" style="IBUITableViewCellStyleDefault" id="Eok-gX-LwQ" customClass="UITableViewVibrantCell" customModule="SideMenu">

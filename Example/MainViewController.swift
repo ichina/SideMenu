@@ -90,6 +90,22 @@ class MainViewController: UIViewController {
         SideMenuManager.default.menuFadeStatusBar = switchControl.isOn
     }
 
+
+  @objc
+  func handle(_ n: Notification) {
+
+    let vc = PresentedViewController()
+    vc.view.backgroundColor = .red
+
+    vc.modalPresentationStyle = .overFullScreen
+    SideMenuManager.default.menuLeftNavigationController?.present(vc, animated: true, completion: nil)
+
+
+
+    vc.cloj = {
+        vc.dismiss(animated: true, completion: nil)
+    }
+  }
 }
 
 extension MainViewController: UISideMenuNavigationControllerDelegate {

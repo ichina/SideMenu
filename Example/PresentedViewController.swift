@@ -13,4 +13,25 @@ class PresentedViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+  var cloj: (() -> Void)?
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    print(#file, #function)
+    let btn = UIButton(type: .custom)
+    btn.setTitle("Ixit", for: .normal)
+
+    btn.frame = CGRect(x: 100, y: 200, width: 200, height: 200)
+
+    view.addSubview(btn)
+
+    btn.addTarget(self, action: #selector(PresentedViewController.touch(_:)), for: .touchUpInside)
+  }
+
+  @objc
+  func touch(_ id: Any) {
+
+    cloj?()
+  }
+
 }

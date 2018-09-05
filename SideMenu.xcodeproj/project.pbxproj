@@ -26,6 +26,8 @@
 		84B489B71DD469B000D6CB43 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 84B489B41DD469B000D6CB43 /* README.md */; };
 		84B489BA1DD469DA00D6CB43 /* SideMenu.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 84B489B91DD469DA00D6CB43 /* SideMenu.podspec */; };
 		ACD6DAED90DE36FEA68CDF38 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47896ABC5C8830D88945A8D3 /* Pods_Example.framework */; };
+		B0AC2FAE20C98748006CF078 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9DC9041DC6E8C1000D4007 /* SideMenu.framework */; };
+		B0AC2FAF20C98748006CF078 /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9DC9041DC6E8C1000D4007 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,28 @@
 			remoteGlobalIDString = 7B48A0D21DCB2487002990A1;
 			remoteInfo = Example;
 		};
+		B0AC2FB020C98748006CF078 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B9DC8FB1DC6E8C1000D4007 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B9DC9031DC6E8C1000D4007;
+			remoteInfo = SideMenu;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B0AC2FB220C98749006CF078 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B0AC2FAF20C98748006CF078 /* SideMenu.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1F17B9D56ADA958C611FAA83 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0AC2FAE20C98748006CF078 /* SideMenu.framework in Frameworks */,
 				ACD6DAED90DE36FEA68CDF38 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,10 +247,12 @@
 				7B48A0D11DCB2487002990A1 /* Resources */,
 				558DEC0A930F44C17D50F99B /* [CP] Embed Pods Frameworks */,
 				890CFF790C4292F1DC8AA122 /* [CP] Copy Pods Resources */,
+				B0AC2FB220C98749006CF078 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B0AC2FB120C98748006CF078 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -481,6 +507,11 @@
 			isa = PBXTargetDependency;
 			target = 7B48A0D21DCB2487002990A1 /* Example */;
 			targetProxy = 7B48A0E71DCB2487002990A1 /* PBXContainerItemProxy */;
+		};
+		B0AC2FB120C98748006CF078 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B9DC9031DC6E8C1000D4007 /* SideMenu */;
+			targetProxy = B0AC2FB020C98748006CF078 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

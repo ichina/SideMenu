@@ -35,5 +35,22 @@ class SideMenuTableViewController: UITableViewController {
         
         return cell
     }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.row == 2 {
+//      let vc = PresentedViewController()
+//      vc.view.backgroundColor = .red
+//      SideMenuManager.default.menuWidth = UIScreen.main.bounds.width
+//      self.present(vc, animated: true, completion: nil)
+
+      NotificationCenter.default.post(
+        name: NSNotification.Name("HANDLE_EXTERNAL_FILE_NOTIFICATION"),
+        object: nil,
+        userInfo: nil)
+
+//      SideMenuManager.default.menuLeftNavigationController?.present(vc, animated: true, completion: nil)
+    }
+
+  }
     
 }
