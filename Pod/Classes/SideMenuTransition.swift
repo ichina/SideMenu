@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol NavigationViewContainerType {
-  var navigationView: NavigationViewType { get }
+  var navigationView: NavigationViewType? { get }
 }
 public protocol NavigationViewType {}
 
