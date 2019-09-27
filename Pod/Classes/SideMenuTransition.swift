@@ -8,6 +8,11 @@
 
 import UIKit
 
+public protocol NavigationViewContainerType {
+  var navigationView: NavigationViewType? { get }
+}
+public protocol NavigationViewType {}
+
 open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
     
     fileprivate var presenting = false
@@ -18,9 +23,18 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
         didSet {
             if switchMenus {
                 cancel()
+                update(0, isInteration: false)
             }
         }
     }
+    public var isPresenting: Bool {
+      return presenting
+    }
+
+    public var isInteractive: Bool {
+      return interactive
+    }
+
     fileprivate var menuWidth: CGFloat {
         get {
             let overriddenWidth = menuViewController?.menuWidth ?? 0
@@ -175,8 +189,10 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
                     update(0.9999)
                 }
                 finish()
+                update(1, isInteration: false)
             } else {
                 cancel()
+                update(0, isInteration: false)
             }
         }
     }
@@ -211,9 +227,11 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
                 }
                 finish()
                 activeGesture = nil
+                update(1, isInteration: false)
             } else {
                 cancel()
                 activeGesture = nil
+                update(0, isInteration: false)
             }
         }
     }
@@ -427,6 +445,7 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
         let topView = mainViewController!.view!
         
         // prepare menu items to slide in
+        var navbar : UIView?
         if presenting {
             originalSuperview = topView.superview
             
@@ -447,6 +466,16 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
             }
             
             hideMenuStart()
+          if let nvbar = (fromViewController as? NavigationViewContainerType)?.navigationView as? UIView {
+            container.addSubview(nvbar)
+            navbar = nvbar
+          }
+
+        } else {
+          if let nvbar = container.subviews.first(where: {$0 is NavigationViewType}) {
+            navbar = nvbar
+            container.bringSubview(toFront: nvbar) 
+          }
         }
         
         let animate = {
@@ -466,6 +495,9 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
                 
                 if self.presenting {
                     self.hideMenuComplete()
+                  if let navbar = navbar {
+                    fromViewController.view.addSubview(navbar)
+                  }
                 } else {
                     self.presentMenuComplete()
                 }
@@ -502,8 +534,14 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
                 if let statusBarView = self.statusBarView {
                     container.bringSubview(toFront: statusBarView)
                 }
-                
+              if let navbar = navbar {
+                container.bringSubview(toFront: navbar)
+              }
                 return
+            } else {
+              if let navbar = navbar {
+                toViewController.view.addSubview(navbar)
+              }
             }
             
             self.hideMenuComplete()
@@ -548,10 +586,14 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
         guard !switchMenus else {
             return
         }
-        
         super.update(percentComplete)
+        update(percentComplete, isInteration: interactive)
     }
-    
+
+    @objc
+    open func update(_ percentComplete: CGFloat, isInteration: Bool) {
+      //For override
+    }
 }
 
 extension SideMenuTransition: UIViewControllerTransitioningDelegate {
